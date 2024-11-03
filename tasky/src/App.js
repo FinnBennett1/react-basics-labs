@@ -14,13 +14,13 @@ function App() {
   return (
     <div className="container">
      <h1>Tasky</h1>
-     <Task title="Dishes" deadline="Today" description="Washthem dishes now" >
-      
-      </Task>
-     <Task title="Laundry" deadline="Tommorow" description="Fold the clothes now">
-      
-      </Task>
-     <Task title="Tidy" deadline="Today" />
+     {taskState.tasks.map((task) => (              
+    <Task 
+      title={task.title}
+      description={task.description}
+      deadline={task.deadline}
+    />
+  ))} 
     </div>
   );
 }
