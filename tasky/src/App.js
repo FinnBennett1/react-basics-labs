@@ -20,6 +20,8 @@ function App() {
     console.log(`${taskIndex} ${tasks[taskIndex].done}`);
     
   }
+
+  
   return (
     <div className="card" style={{backgroundColor: props.done ? 'lightgrey' : '#5bb4c4'}}>
      <h1>Tasky</h1>
@@ -30,6 +32,7 @@ function App() {
       deadline={task.deadline}
       key={task.id}
       done={task.done}
+      deleteTask = {() => deleteHandler(index)}
       markDone={() => doneHandler(index)}
     />
   ))}
