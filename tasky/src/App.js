@@ -1,45 +1,43 @@
-
 import './App.css';
 import Task from './components/Task';
 import React, { useState } from 'react';
+import AddTaskForm from './components/Form';
 
 function App() {
   const [ taskState, setTaskState ] = useState({
     tasks: [
       { id: 1, title:"Dishes", description: "Empty dishwasher", deadline: "Today", done: false },
       { id: 2, title: "Laundry", description: "Fold clothes and put away", deadline: "Tomorrow", done: false },
-      { id: 3, title: "Tidy up", deadline: "Today", done: false},
-      <button onClick={props.markDone} className='doneButton'>Done</button>
+      { id: 3, title: "Tidy up", deadline: "Today", done: false}
     ]
-    
   });
+
   const doneHandler = (taskIndex) => {
     const tasks = [...taskState.tasks];
     tasks[taskIndex].done = !tasks[taskIndex].done;
     setTaskState({tasks});
     console.log(`${taskIndex} ${tasks[taskIndex].done}`);
-    
   }
 
-  
+  const deleteHandler = (taskIndex) => {
+    const tasks = taskState.tasks.filter((_, index) => index !== taskIndex);
+    setTaskState({ tasks });
+  }
+
   return (
-    <div className="card" style={{backgroundColor: props.done ? 'lightgrey' : '#5bb4c4'}}>
-     <h1>Tasky</h1>
-     {taskState.tasks.map((task, index) => (              
+    <div>
+      <h1>Tasky</h1>
+      {taskState.tasks.map((task, index) => (              
     <Task 
       title={task.title}
       description={task.description}
       deadline={task.deadline}
       key={task.id}
-      done={task.done}
       deleteTask = {() => deleteHandler(index)}
       markDone={() => doneHandler(index)}
     />
   ))}
-    
-  
     </div>
-    
   );
 }
 
